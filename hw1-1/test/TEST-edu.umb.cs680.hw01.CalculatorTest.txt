@@ -1,7 +1,0 @@
-Testcase: edu.umb.cs680.hw01.CalculatorTest
-Test: test_multiply2_5By5_5() took 5 milli sec(s)
-Test: test_multiply3By4() took 1 milli sec(s)
-Test: test_divide3By2() took 0 milli sec(s)
-Test: test_divide5By0() took 0 milli sec(s)
-Test: test_divide2_5By5_0() took 0 milli sec(s)
-Tests run: 5, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 10 milli sec(s)
