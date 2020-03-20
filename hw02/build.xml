@@ -1,59 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="hw02" basedir="." default="build">
-
-	<property name="output.dir" value="bin" />
-	<property name="test.output.dir" value="test/bin" />
-	<property name="src.dir" value="src" />
-	<property name="test.src.dir" value="test/src" />
-	<property environment="env" />
-	<property name="junit.output.dir" value="junit" />
-	<property name="debuglevel" value="source,lines,vars" />
-	<property name="target" value="1.8" />
-	<property name="source" value="1.8" />
-	<path id="classpath">
-		<pathelement location="bin" />
-		<pathelement location="test/bin" />
-		<fileset dir="${env.JUNIT}" includes="*.jar" excludes="org.junit.vintage.*.jar" />
-	</path>
-
-	<target name="clean">
-		<delete dir="${output.dir}" />
-		<delete dir="${test.output.dir}" />
-	</target>
-
-	<target name="init">
-		<mkdir dir="${output.dir}" />
-		<mkdir dir="${test.output.dir}" />
-	</target>
-
-	<target depends="clean" name="cleanall" />
-	<target depends="clean, build-project, CalculatorTest, Calculator" name="build" />
-	<target depends="init" name="build-project">
-		<echo message="${ant.project.name}: ${ant.file}" />
-		<javac debug="true" debuglevel="${debuglevel}" destdir="${output.dir}" includeantruntime="false" source="${source}" target="${target}">
-			<src path="${src.dir}" />
-			<classpath refid="classpath" />
-		</javac>
-		<javac debug="true" debuglevel="${debuglevel}" destdir="test/bin" includeantruntime="false" source="${source}" target="${target}">
-			<src path="${test.src.dir}" />
-			<classpath refid="classpath" />
-		</javac>
-	</target>
-
-	<target name="Calculator">
-		<java classname="edu.umb.cs680.hw02.Calculator" classpath="bin" failonerror="true" fork="yes" />
-	</target>
-
-	<target name="CalculatorTest">
-		<junitlauncher printSummary="yes">
-			<classpath refid="classpath" />
-
-			<testclasses outputdir="test">
-				<fileset dir="${test.output.dir}">
-					<include name="edu/umb/cs680/hw02/*Test.class" />
-				</fileset>
-				<listener type="legacy-plain" sendSysOut="true" />
-			</testclasses>
-		</junitlauncher>
-	</target>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="hw02">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="C:/Users/vipul/eclipse/jee-2019-12/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="13"/>
+    <property name="source" value="13"/>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.jupiter.api_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.jupiter.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.jupiter.params_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.platform.commons_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.platform.engine_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.platform.launcher_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.platform.runner_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.platform.suite.api_1.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit.vintage.engine_5.5.1.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="C:/Users/vipul/.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
+    <path id="hw02.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.Calculator (3).classpath">
+        <path refid="hw02.classpath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.CalculatorTest (3).classpath">
+        <path refid="hw02.classpath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    	<mkdir dir="test/bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test/src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    	<delete dir="test/bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test/src"/>
+            <classpath refid="hw02.classpath"/>
+        </javac>
+    	<javac debug="true" debuglevel="${debuglevel}" destdir="test/bin" includeantruntime="false" source="${source}" target="${target}">
+    	            <src path="test/src"/>
+    	            <classpath refid="hw02.classpath"/>
+    	        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Calculator (3)">
+        <java classname="edu.umb.cs680.hw02.Calculator" failonerror="true" fork="yes">
+            <classpath refid="run.Calculator (3).classpath"/>
+        </java>
+    </target>
+    <target name="CalculatorTest (3)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.umb.cs680.hw02.CalculatorTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.CalculatorTest (3).classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
 </project>
