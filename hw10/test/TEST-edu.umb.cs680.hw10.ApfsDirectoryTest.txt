@@ -1,6 +1,6 @@
 Testcase: edu.umb.cs680.hw10.ApfsDirectoryTest
 Test: testsubfilesindir() took 0 milli sec(s)
-Test: testsubdir() took 0 milli sec(s)
+Test: testsubdir() took 1 milli sec(s)
 Test: testforfileanddirectory() took 0 milli sec(s)
 Test: testforinfoonfiles() took 0 milli sec(s)
 Test: verifyDirectoryEqualityCode() took 0 milli sec(s)
@@ -89,9 +89,9 @@ org.opentest4j.AssertionFailedError: array contents differ at index [3], expecte
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
 
-Test: testdir() took 0 milli sec(s)
+Test: testdir() took 1 milli sec(s)
 Test: testforsizedir() took 0 milli sec(s)
 Test: testforsizecode() took 0 milli sec(s)
-Test: verifyDirectoryEqualityCodefile() took 0 milli sec(s)
-Test: verifyDirectoryEqualityApplications() took 1 milli sec(s)
-Tests run: 12, Failures: 1, Skipped: 0, Aborted: 0, Time elapsed: 6 milli sec(s)
+Test: verifyDirectoryEqualityCodefile() took 1 milli sec(s)
+Test: verifyDirectoryEqualityApplications() took 0 milli sec(s)
+Tests run: 12, Failures: 1, Skipped: 0, Aborted: 0, Time elapsed: 5 milli sec(s)

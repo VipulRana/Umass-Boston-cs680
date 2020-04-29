@@ -41,6 +41,7 @@
 	</target>
 
 	<target name="FSElement">
+                <java classname="edu.umb.cs680.hw10.ApfsFSVisitor" classpath="bin" failonerror="true" fork="yes" />
 		<java classname="edu.umb.cs680.hw10.ApfsDirectory" classpath="bin" failonerror="true" fork="yes" />
 		<java classname="edu.umb.cs680.hw10.ApfsFile" classpath="bin" failonerror="true" fork="yes" />
 		<java classname="edu.umb.cs680.hw10.FileSystem" classpath="bin" failonerror="true" fork="yes" />
