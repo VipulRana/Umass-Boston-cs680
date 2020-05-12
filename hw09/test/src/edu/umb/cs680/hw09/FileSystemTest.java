@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class FileSystemTest {
 
-static LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
+static LocalDateTime localTime = LocalDateTime.of(2020, 05, 12, 0, 0);
 	
 	@SuppressWarnings("unused")
 	@BeforeAll
@@ -18,23 +18,23 @@ static LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
 		
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.initFileSystem("drive", 3500);
-		ApfsDirectory applications = new ApfsDirectory(root, "applications", 0, localTime, "sandesh", localTime);
-		ApfsDirectory home = new ApfsDirectory(root, "home", 0, localTime, "sandesh", localTime);
-		ApfsDirectory code = new ApfsDirectory(home, "code", 0, localTime, "sandesh", localTime);
-		ApfsFile a = new ApfsFile(applications, "a", 350, localTime, "sandesh", localTime);
-		ApfsFile b = new ApfsFile(applications, "b", 700, localTime, "sandesh", localTime);
-		ApfsFile c = new ApfsFile(home, "c", 800, localTime, "sandesh", localTime);
-		ApfsFile d = new ApfsFile(home, "d", 80, localTime, "sandesh", localTime);
-		ApfsLink x = new ApfsLink(home, "x", 0, localTime, "sandesh", localTime, applications);
-		ApfsFile e = new ApfsFile(code, "e", 700, localTime, "sandesh", localTime);
-		ApfsFile f = new ApfsFile(code, "f", 870, localTime, "sandesh", localTime);
-		ApfsLink y = new ApfsLink(code, "y", 0, localTime, "sandesh", localTime, b);
+		ApfsDirectory applications = new ApfsDirectory(root, "applications", 0, localTime, "vipul", localTime);
+		ApfsDirectory home = new ApfsDirectory(root, "home", 0, localTime, "vipul", localTime);
+		ApfsDirectory code = new ApfsDirectory(home, "code", 0, localTime, "vipul", localTime);
+		ApfsFile a = new ApfsFile(applications, "a", 350, localTime, "vipul", localTime);
+		ApfsFile b = new ApfsFile(applications, "b", 700, localTime, "vipul", localTime);
+		ApfsFile c = new ApfsFile(home, "c", 800, localTime, "vipul", localTime);
+		ApfsFile d = new ApfsFile(home, "d", 80, localTime, "vipul", localTime);
+		ApfsLink x = new ApfsLink(home, "x", 0, localTime, "vipul", localTime, applications);
+		ApfsFile e = new ApfsFile(code, "e", 700, localTime, "vipul", localTime);
+		ApfsFile f = new ApfsFile(code, "f", 870, localTime, "vipul", localTime);
+		ApfsLink y = new ApfsLink(code, "y", 0, localTime, "vipul", localTime, b);
 	}
 	@Test
 	public void testforrootinstance() {
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		assertEquals(root.getOwnerName(), "sandesh");
+		assertEquals(root.getOwnerName(), "vipul");
 		assertEquals(root.getLastModified(), localTime);
 	}
 	private String[] stringarraycreation(ApfsDirectory dir) {
@@ -53,7 +53,7 @@ static LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
 	public void testforrootstatus() {
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "root", "0", localTime.toString(), null, "3500", "2", "drive", "3500", "sandesh", localTime.toString()};
+		String[] expected = { "true", "root", "0", localTime.toString(), null, "3500", "2", "drive", "3500", "vipul", localTime.toString()};
 		ApfsDirectory actual = root.findDirByName("root");
 		assertArrayEquals(expected,stringarraycreation(actual));
 	}

@@ -13,7 +13,7 @@ import edu.umb.cs680.hw09.ApfsDirectory;
 
 class ApfsDirectoryTest {
 
-static LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
+static LocalDateTime localTime = LocalDateTime.of(2020, 05, 12, 0, 0);
 private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	Optional<ApfsDirectory> optionalDirectory = Optional.ofNullable(Elementforfs.getParent());
 	String[] informationoffile = { Boolean.toString(Elementforfs.isDirectory()), Elementforfs.getName(), 
@@ -29,17 +29,17 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 		
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.initFileSystem("drive", 3500);
-		ApfsDirectory applications = new ApfsDirectory(root, "applications", 0, localTime, "sandesh", localTime);
-		ApfsDirectory home = new ApfsDirectory(root, "home", 0, localTime, "sandesh", localTime);
-		ApfsDirectory code = new ApfsDirectory(home, "code", 0, localTime, "sandesh", localTime);
-		ApfsFile a = new ApfsFile(applications, "a", 350, localTime, "sandesh", localTime);
-		ApfsFile b = new ApfsFile(applications, "b", 700, localTime, "sandesh", localTime);
-		ApfsFile c = new ApfsFile(home, "c", 800, localTime, "sandesh", localTime);
-		ApfsFile d = new ApfsFile(home, "d", 80, localTime, "sandesh", localTime);
-		ApfsLink x = new ApfsLink(home, "x", 0, localTime, "sandesh", localTime, applications);
-		ApfsFile e = new ApfsFile(code, "e", 700, localTime, "sandesh", localTime);
-		ApfsFile f = new ApfsFile(code, "f", 870, localTime, "sandesh", localTime);
-		ApfsLink y = new ApfsLink(code, "y", 0, localTime, "sandesh", localTime, b);
+		ApfsDirectory applications = new ApfsDirectory(root, "applications", 0, localTime, "vipul", localTime);
+		ApfsDirectory home = new ApfsDirectory(root, "home", 0, localTime, "vipul", localTime);
+		ApfsDirectory code = new ApfsDirectory(home, "code", 0, localTime, "vipul", localTime);
+		ApfsFile a = new ApfsFile(applications, "a", 350, localTime, "vipul", localTime);
+		ApfsFile b = new ApfsFile(applications, "b", 700, localTime, "vipul", localTime);
+		ApfsFile c = new ApfsFile(home, "c", 800, localTime, "vipul", localTime);
+		ApfsFile d = new ApfsFile(home, "d", 80, localTime, "vipul", localTime);
+		ApfsLink x = new ApfsLink(home, "x", 0, localTime, "vipul", localTime, applications);
+		ApfsFile e = new ApfsFile(code, "e", 700, localTime, "vipul", localTime);
+		ApfsFile f = new ApfsFile(code, "f", 870, localTime, "vipul", localTime);
+		ApfsLink y = new ApfsLink(code, "y", 0, localTime, "vipul", localTime, b);
 	}
 	
 	
@@ -86,7 +86,7 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	public void verifyDirectoryEqualityApplications() { 
 		APFS ApfsFileSystem = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)ApfsFileSystem.getRootDir();
-		String[] expected = { "true", "applications", "0", localTime.toString(), "root", "1050", "2", "sandesh", localTime.toString() };
+		String[] expected = { "true", "applications", "0", localTime.toString(), "root", "1050", "2", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("applications");
 		assertArrayEquals(expected,arraystringfordirectory(actual));
 	}
@@ -101,7 +101,7 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	public void verifyDirectoryEqualityCode() { 
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "code", "0", localTime.toString(), "home", "1570", "2", "sandesh", localTime.toString() };
+		String[] expected = { "true", "code", "0", localTime.toString(), "home", "1570", "2", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("code");
 		assertArrayEquals(expected,arraystringfordirectory(actual));
 	}
@@ -138,7 +138,7 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	public void verifyDirectoryEqualityRoot() {
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "root", "0", localTime.toString(), null, "3500", "2", "sandesh", localTime.toString() };
+		String[] expected = { "true", "root", "0", localTime.toString(), null, "3500", "2", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("root");
 		assertArrayEquals(expected,arraystringfordirectory(actual));
 	}
@@ -147,7 +147,7 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	public void verifyDirectoryEqualityCodefile() { 
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "code", "0", localTime.toString(), "home", "1570", "2", "sandesh", localTime.toString() };
+		String[] expected = { "true", "code", "0", localTime.toString(), "home", "1570", "2", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("code");
 		assertArrayEquals(expected,arraystringfordirectory(actual));
 	}
@@ -155,7 +155,7 @@ private String[] arraystringfordirectory(ApfsDirectory Elementforfs) {
 	public void verifyDirectoryEqualityHome() { 
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "home", "0", localTime.toString(), "root", "2450", "3", "sandesh", localTime.toString() };
+		String[] expected = { "true", "home", "0", localTime.toString(), "root", "2450", "3", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("home");
 		assertArrayEquals(expected,arraystringfordirectory(actual));
 	}

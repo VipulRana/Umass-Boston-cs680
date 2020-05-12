@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class APFSTest {
 
-	static LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
+	static LocalDateTime localTime = LocalDateTime.of(2020, 05, 12, 0, 0);
 	private String[] stringarraycreation(ApfsDirectory directory) {
 		Optional<ApfsDirectory> optionalDirectory = Optional.ofNullable(directory.getParent());
 		String[] inforofdirectory = { Boolean.toString(directory.isDirectory()), directory.getName(), 
@@ -32,7 +32,7 @@ class APFSTest {
 	public void testrootmaindirectory() {
 		APFS FilesystemofApfs = APFS.getAPFSFileSystem();
 		ApfsDirectory root = (ApfsDirectory)FilesystemofApfs.getRootDir();
-		String[] expected = { "true", "root", "0", localTime.toString(), null, "0", "0", "sandesh", localTime.toString() };
+		String[] expected = { "true", "root", "0", localTime.toString(), null, "0", "0", "vipul", localTime.toString() };
 		ApfsDirectory actual = root.findDirByName("root");
 		assertArrayEquals(expected,stringarraycreation(actual));
 	}
