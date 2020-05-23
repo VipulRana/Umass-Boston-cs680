@@ -3,136 +3,87 @@ package edu.umb.cs680.hw10;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-public class ApfsDirectory extends ApfsElement{
-	
-	private LinkedList<ApfsElement> child;
-	
-	
+public class ApfsDirectory extends ApfsElement {
+    private LinkedList<ApfsElement> children;
 
-	public ApfsDirectory(ApfsDirectory parent, String name, int size, LocalDateTime creationTime, String ownerName, LocalDateTime lastModified) {
-		super(parent, name, size, creationTime, ownerName, lastModified);
-		if(parent != null)
-			parent.appendChild(this);
-	}
-	public LinkedList<ApfsFile> getFiles() {
-		LinkedList<ApfsFile> listfile = new LinkedList<ApfsFile>();
-		for(FSElement s : getChildren()) {
-			if(s instanceof ApfsFile)
-				listfile.add((ApfsFile) s);
-		}
-		return listfile;
-	}
-	@Override
-	public boolean isDirectory() {
-		return true;
-	}
-	public LinkedList<ApfsElement> getChildren() {
-		if(this.child == null) {
-			this.child = new LinkedList<ApfsElement>();
-		}
-		return child;
-	}
-	public LinkedList<ApfsLink> getLinks() {
-		LinkedList<ApfsLink> listoflink = new LinkedList<ApfsLink>();
-		for(FSElement s : getChildren()) {
-			if(s instanceof ApfsLink)
-				listoflink.add((ApfsLink) s);
-		}
-		return listoflink;
-	}
-	
-	public int getTotalSize() {
-		int sizetotvalue = 0;
-		for(ApfsElement s : getChildren()) {
-			if(s instanceof ApfsDirectory)
-				sizetotvalue += ((ApfsDirectory) s).getTotalSize();
-			else
-				sizetotvalue += s.getSize();
-		}
-		return sizetotvalue;
-	}
-	public void appendChild(ApfsElement child) {
-		if(this.child == null) {
-			this.child = new LinkedList<ApfsElement>();
-		}
-		this.child.add(child);
-	}
-	
-	public int countChildren() {
-		return getChildren().size() - getLinks().size();
-	}
-	
-	public LinkedList<ApfsDirectory> getSubDirectories() {
-		LinkedList<ApfsDirectory> listdir = new LinkedList<ApfsDirectory>();
-		for(FSElement s : getChildren()) {
-			if(s instanceof ApfsDirectory)
-				listdir.add((ApfsDirectory) s);
-		}
-		return listdir;	
-	}
-	@Override
-	public void accept(ApfsFSVisitor visitor) {
-		visitor.visit(this);
-		for(ApfsElement e : getChildren()) {
-			e.accept(visitor);
-		}
-	}
-	
-	
-	
-	public ApfsLink findLinkByName(String nameoflink) {
-		ApfsLink link = null;
-		for(ApfsLink l : getLinks()) {
-			if(nameoflink.equals(l.getName()))
-				link = l;
-		}
-		if(link == null) {
-			for(ApfsDirectory dir : getSubDirectories()) {
-				link = dir.findLinkByName(nameoflink);
-				if(link != null)
-					break;
-			}
-		}
-		return link;
-	}
-	public ApfsDirectory findDirByName(String nameofdir) {
-		ApfsDirectory nameddirectory = null;
-		if(nameofdir.equals(getName()))
-			nameddirectory = this;
-		else {
-			for(ApfsDirectory dir : getSubDirectories()) {
-				if(nameddirectory == null) {
-					nameddirectory = dir.findDirByName(nameofdir);
-					if(nameofdir.equals(dir.getName())) {
-						nameddirectory = dir;
-						break;
-					}
-				}
-			}
-		}
-		return nameddirectory;
-	}
-	
-	public ApfsFile findFileByName(String namedfile) {
-		ApfsFile fileinstance = null;
-		for(ApfsFile f : getFiles()) {
-			if(namedfile.equals(f.getName()))
-				fileinstance = f;
-		}
-		if(fileinstance == null) {
-			for(ApfsDirectory dir : getSubDirectories()) {
-				fileinstance = dir.findFileByName(namedfile);
-				if(fileinstance != null)
-					break;
-			}
-		}
-		return fileinstance;
-	}
-	
-	
-	
-	
-	public static void main(String[] args) {
-		System.out.println("The class ApfsDirectory has run completely");
-	}
+    public ApfsDirectory(ApfsDirectory parent, String name) {
+        super(parent, name, 0, LocalDateTime.now());
+        this.children = new LinkedList<>();
+    }
+
+    @Override
+    public boolean isDirectory() {
+        return true;
+    }
+
+    @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
+    public boolean isLink() {
+        return false;
+    }
+
+    public LinkedList<ApfsElement> getChildren() {
+        return this.children;
+    }
+
+    public void appendChild(ApfsElement child) {
+        this.children.add(child);
+        child.setParent(this);
+    }
+
+    public int countChildren() {
+        return this.children.size();
+    }
+
+    public LinkedList<ApfsDirectory> getSubDirectories() {
+        LinkedList<ApfsDirectory> subDir = new LinkedList<>();
+        for (ApfsElement element : this.children) {
+            if (element.isDirectory()) {
+                subDir.add((ApfsDirectory) element);
+            }
+        }
+        return subDir;
+    }
+
+    public LinkedList<ApfsFile> getFiles() {
+        LinkedList<ApfsFile> files = new LinkedList<>();
+        for (ApfsElement element : this.children) {
+            if (element.isFile()) {
+                files.add((ApfsFile) element);
+            }
+        }
+        return files;
+    }
+
+    public int getTotalSize() {
+        int totalSize = 0;
+        for (ApfsElement element : this.children) {
+            if (element.isDirectory()) {
+                ApfsDirectory subDir = (ApfsDirectory) element;
+                totalSize += subDir.getTotalSize();
+
+            } else if (element.isFile()) {
+                totalSize += element.getSize();
+            }
+
+        }
+        return totalSize;
+    }
+
+    @Override
+    public void accept(ApfsFSVisitor v) {
+        v.visit(this);
+        for (ApfsElement e : this.children) {
+            e.accept(v);
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+    	System.out.println("Class ApfsDirectory is running successfully.");
+    }
 }

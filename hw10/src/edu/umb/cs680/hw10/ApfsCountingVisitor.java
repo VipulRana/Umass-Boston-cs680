@@ -1,40 +1,38 @@
 package edu.umb.cs680.hw10;
 
-public class ApfsCountingVisitor implements ApfsFSVisitor{
+public class ApfsCountingVisitor implements ApfsFSVisitor {
+    private int dirNum = 0;
+    private int fileNum = 0;
+    private int linkNum = 0;
 
-	private int dirNum = 0;
-	private int fileNum = 0;
-	private int linkNum = 0;
-	@Override
-	public void visit(ApfsDirectory dir) {
-		dirNum++;
-	}
-	public int getDirNum() {
-		return dirNum;
-	}
+    @Override
+    public void visit(ApfsLink link) {
+        linkNum++;
+    }
 
-	public int getFileNum() {
-		return fileNum;
-	}
+    @Override
+    public void visit(ApfsFile file) {
+        fileNum++;
+    }
 
-	
+    @Override
+    public void visit(ApfsDirectory dir) {
+        dirNum++;
+    }
 
-	@Override
-	public void visit(ApfsLink link) {
-		linkNum++;
-	}
+    public int getDirNum() {
+        return this.dirNum;
+    }
 
-	
-	public int getLinkNum() {
-		return linkNum;
-	}
+    public int getFileNum() {
+        return this.fileNum;
+    }
 
-	@Override
-	public void visit(ApfsFile file) {
-		fileNum++;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("The Apfscounting visitor has run completely");
-	}
+    public int getLinkNum() {
+        return this.linkNum;
+    }
+    public static void main(String[] args)
+    {
+    	System.out.println("Class ApfsCountingVisitor is running successfully.");
+    }
 }

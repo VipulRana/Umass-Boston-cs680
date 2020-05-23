@@ -1,35 +1,38 @@
 package edu.umb.cs680.hw10;
 
-public class ApfsFileSearchVisitor implements ApfsFSVisitor{
+import java.util.LinkedList;
 
-	private String fileName;
-	private ApfsFile file;
-	
-	
-	@Override
-	public void visit(ApfsDirectory dir) {
-		return;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+public class ApfsFileSearchVisitor implements ApfsFSVisitor {
+    private String fileName;
+    private LinkedList<ApfsFile> foundFiles = new LinkedList<>();
 
-	@Override
-	public void visit(ApfsLink link) {
-		return;
-	}
-	public ApfsFile getFile() {
-		return file;
-	}
-	
+    public ApfsFileSearchVisitor(String fileName) {
+        this.fileName = fileName;
+    }
 
-	@Override
-	public void visit(ApfsFile file) {
-		if(fileName.equals(file.getName()))
-			this.file = file;
-	}
+    @Override
+    public void visit(ApfsDirectory dir) {
+        return;
+    }
 
-	public static void main(String[] args) {
-		System.out.println("The Apfsfilesearchvisitor has run completely");
-	}
+    @Override
+    public void visit(ApfsLink link) {
+        return;
+    }
+
+    @Override
+    public void visit(ApfsFile file) {
+        if (file.getName().equals(this.fileName)) {
+            foundFiles.add(file);
+        }
+    }
+
+    public LinkedList<ApfsFile> getFoundFiles() {
+        return this.foundFiles;
+    }
+    
+    public static void main(String[] args)
+    {
+    	System.out.println("Class ApfsFileSearchVisitor is running successfully.");
+    }
 }

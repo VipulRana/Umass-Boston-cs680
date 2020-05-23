@@ -1,0 +1,8 @@
+Testcase: edu.umb.cs680.hw10.VisitorTest
+Test: testCountingOfHome() took 7 milli sec(s)
+Test: testCountingOfRoot() took 1 milli sec(s)
+Test: testSearchAInHome() took 3 milli sec(s)
+Test: testFileCrawlingOfApplications() took 2 milli sec(s)
+Test: testSearchFInRoot() took 0 milli sec(s)
+Test: testFileCrawlingOfRoot() took 1 milli sec(s)
+Tests run: 6, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 23 milli sec(s)

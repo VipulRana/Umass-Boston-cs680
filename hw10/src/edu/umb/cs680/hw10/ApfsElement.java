@@ -1,29 +1,55 @@
 package edu.umb.cs680.hw10;
 
+import edu.umb.cs680.hw10.FSElement;
+
 import java.time.LocalDateTime;
 
-public abstract class ApfsElement extends FSElement{
-	
-	private String ownerName;
-	private LocalDateTime lastModified;
+public abstract class ApfsElement extends FSElement {
+    private LocalDateTime creationTime;
+    private LocalDateTime lastModified;
 
-	public String getOwnerName() {
-		return ownerName;
-	}
+    protected ApfsDirectory parent;
 
-	public LocalDateTime getLastModified() {
-		return lastModified;
-	}
+    public ApfsElement(ApfsDirectory parent, String name, int size, LocalDateTime creationTime) {
+        super(name, size);
+        this.parent = parent;
+        this.creationTime = creationTime;
+    }
 
-	public ApfsElement(ApfsDirectory parent, String name, int size, LocalDateTime creationTime, String ownerName, LocalDateTime lastModified) {
-		super(parent, name, size, creationTime);
-		this.ownerName = ownerName;
-		this.lastModified = lastModified;
-	}
-	public abstract void accept(ApfsFSVisitor visitor);
-	public abstract boolean isDirectory();
-	
-	public static void main(String[] args) {
-		System.out.println("The classs ApfsElement has run completely");
-	}
+    public ApfsDirectory getParent() {
+        return this.parent;
+    }
+
+    public abstract boolean isLink();
+
+    public void setParent(ApfsDirectory parent) {
+        this.parent = parent;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public LocalDateTime getCreationTime() {
+        return this.creationTime;
+    }
+
+    public abstract void accept(ApfsFSVisitor v);
+
+    public LocalDateTime getLastModified() {
+        return this.lastModified;
+    }
+
+    public void setLastModified(LocalDateTime time) {
+        this.lastModified = time;
+    }
+    
+    public static void main(String[] args)
+    {
+    	System.out.println("Class ApfsElement is running successfully.");
+    }
 }

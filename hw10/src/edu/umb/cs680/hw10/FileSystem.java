@@ -1,52 +1,36 @@
 package edu.umb.cs680.hw10;
 
 public abstract class FileSystem {
-	private int capacity;
-	private String fileSystemName;
-	private FSElement rootDir;
-	private int id;
-	
-	
-	
+    protected String name;
+    protected int capacity;
+    protected int id;
+    protected FSElement rootDir = null;
 
-	public int getCapacity() {
-		return capacity;
-	}
-	
-	
-	private void setRootDir(FSElement rootDir) {
-		this.rootDir = rootDir;
-	}
-	public int getId() {
-		return id;
-	}
-	
-	
-	public String getFileSystemName() {
-		return fileSystemName;
-	}
-	public FSElement initFileSystem(String Fselementname, int size) {
-		this.fileSystemName = Fselementname;
-		this.capacity = size;
-		FSElement root = createDefaultRoot();
-		if(root.isDirectory() && size > root.getSize()){
-			setRootDir(root);
-			this.id = root.hashCode();
-			return root;
-		}else
-			return null;
-	}
-	public FSElement getRootDir() {
-		return this.rootDir;
-	}
-	
-	
+    public FSElement initFileSystem(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+        FSElement root = createDefaultRoot();
+        if (root.isDirectory() && this.capacity >= root.getSize()) {
+            setRoot(root);
+            this.id = root.hashCode();
+            return root;
+        } else {
+            return null;
+        }
+    }
 
-	
-	
-	protected abstract FSElement createDefaultRoot();
+    private void setRoot(FSElement root) {
+        rootDir = root;
+    }
 
-	public static void main(String[] args) {
-		System.out.println("The class Filesystem has completely run");
-	}
+    public FSElement getRoot() {
+        return rootDir;
+    }
+
+    protected abstract FSElement createDefaultRoot();
+    
+    public static void main(String[] args)
+    {
+    	System.out.println("Class FileSystem is running successfully.");
+    }
 }

@@ -1,5 +1,5 @@
 Testcase: edu.umb.cs680.hw10.APFSTest
-Test: testrootmaindirectory() took 6 milli sec(s) FAILED: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
+Test: testrootmaindirectory() took 11 milli sec(s) FAILED: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
 org.opentest4j.AssertionFailedError: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:40)
 	at org.junit.jupiter.api.AssertArrayEquals.failArraysNotEqual(AssertArrayEquals.java:434)
@@ -83,4 +83,4 @@ org.opentest4j.AssertionFailedError: array contents differ at index [3], expecte
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
 
-Tests run: 1, Failures: 1, Skipped: 0, Aborted: 0, Time elapsed: 12 milli sec(s)
+Tests run: 1, Failures: 1, Skipped: 0, Aborted: 0, Time elapsed: 20 milli sec(s)

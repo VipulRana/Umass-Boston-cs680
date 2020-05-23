@@ -1,28 +1,39 @@
 package edu.umb.cs680.hw10;
 
+import edu.umb.cs680.hw10.FSElement;
+import edu.umb.cs680.hw10.FileSystem;
+
 import java.time.LocalDateTime;
 
+public class APFS extends FileSystem {
+    private String ownerName;
+    private LocalDateTime lastModified;
 
-public class APFS extends FileSystem{
-	public static APFS getAPFSFileSystem() {
-		if(classinst==null)
-			classinst = new APFS ();
-		return classinst;
-	}
-	private static APFS classinst = null;
-	@Override
-	protected FSElement createDefaultRoot() {
-		LocalDateTime localTime = LocalDateTime.of(2019, 12, 20, 0, 0);
-		ApfsDirectory root = new ApfsDirectory(null, "root", 0, localTime, "vipul", localTime);
-		return root;
-	}
-	private APFS() {};
-	
-	
+    public APFS(String ownerName) {
+        this.ownerName = ownerName;
+        this.lastModified = LocalDateTime.now();
+    }
 
-	
-	
-	public static void main(String[] args) {
-		System.out.println("The class APFS has run completely");
-	}
+    @Override
+    protected FSElement createDefaultRoot() {
+        return new ApfsDirectory(null, "root");
+    }
+
+    public ApfsDirectory getRootDir() {
+        ApfsDirectory rootDir = (ApfsDirectory) this.getRoot();
+        return rootDir;
+    }
+
+    public String getOwnerName() {
+        return this.ownerName;
+    }
+
+    public LocalDateTime getLastModified() {
+        return this.lastModified;
+    }
+    
+    public static void main(String[] args)
+    {
+    	System.out.println("Class APFS is running successfully.");
+    }
 }

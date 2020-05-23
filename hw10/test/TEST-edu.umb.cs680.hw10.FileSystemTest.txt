@@ -1,5 +1,5 @@
 Testcase: edu.umb.cs680.hw10.FileSystemTest
-Test: testforrootstatus() took 0 milli sec(s) FAILED: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
+Test: testforrootstatus() took 1 milli sec(s) FAILED: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
 org.opentest4j.AssertionFailedError: array contents differ at index [3], expected: <2020-04-22T00:00> but was: <2019-12-20T00:00>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:40)
 	at org.junit.jupiter.api.AssertArrayEquals.failArraysNotEqual(AssertArrayEquals.java:434)
@@ -83,7 +83,7 @@ org.opentest4j.AssertionFailedError: array contents differ at index [3], expecte
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
 
-Test: testforrootinstance() took 0 milli sec(s) FAILED: expected: <2019-12-20T00:00> but was: <2020-04-22T00:00>
+Test: testforrootinstance() took 2 milli sec(s) FAILED: expected: <2019-12-20T00:00> but was: <2020-04-22T00:00>
 org.opentest4j.AssertionFailedError: expected: <2019-12-20T00:00> but was: <2020-04-22T00:00>
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:56)
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
@@ -165,4 +165,4 @@ org.opentest4j.AssertionFailedError: expected: <2019-12-20T00:00> but was: <2020
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
 
-Tests run: 2, Failures: 2, Skipped: 0, Aborted: 0, Time elapsed: 3 milli sec(s)
+Tests run: 2, Failures: 2, Skipped: 0, Aborted: 0, Time elapsed: 7 milli sec(s)
